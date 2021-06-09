@@ -2,11 +2,12 @@ import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import WeatherInfo from './components/WeatherInfo'
 
 const WEATHER_API_KEY = '58fa72b424e6c8a30df9f61094b8f84f';
 
 export default function App() {
-  
+
   const [errorMessage, setErrorMessage] = useState(null);
   const [location, setLocation] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -29,33 +30,29 @@ export default function App() {
       alert(`Latitude: ${latitude} \n Longitude: ${longitude}`)
 
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
-      // const response = await fetch(weatherUrl)
-      // const result = await response.json();
-      // if (response.ok) {
-      //   setCurrentWeather(result)
-      // } else {
-      //   setErrorMessage(result.message);
-      // }
 
-      fetch(weatherUrl)
-        .then(response => response.json())
-        .then(data => setCurrentWeather(data))
-      // .then(error => setErrorMessage(error))
+      const response = await fetch(weatherUrl)
+      const result = await response.json();
+      if (response.ok) {
+        setCurrentWeather(result)
+      } else {
+        setErrorMessage(result.message);
+      }
 
     } catch (error) {
-
+      setErrorMessage(error.message)
     }
   }
 
-  console.log('OK')
 
   if (currentWeather) {
     const { main: { temp } } = currentWeather
-    console.log(temp)
     return (
       <View style={styles.container}>
-        <Text>CurrentWeather: {temp} Degree Celcius</Text>
         <StatusBar style="auto" />
+        <View style={styles.main}>
+          <WeatherInfo currentWeather={currentWeather}/>
+        </View>
       </View>
     )
   } else {
@@ -68,14 +65,15 @@ export default function App() {
   }
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
-  find: {
-    backgroundColor: 'blue'
+  main: {
+    justifyContent: 'center',
+    flex: 1,
   }
 });
