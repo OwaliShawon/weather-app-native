@@ -27,7 +27,7 @@ export default function App() {
       const location = await Location.getCurrentPositionAsync();
       // alert(`Location: ${location}`)
       const { latitude, longitude } = location.coords;
-      alert(`Latitude: ${latitude} \n Longitude: ${longitude}`)
+      // alert(`Latitude: ${latitude} \n Longitude: ${longitude}`)
 
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
 
