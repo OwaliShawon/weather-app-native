@@ -45,6 +45,8 @@ export default function App() {
     }
   }
 
+  console.log('OK')
+
   if (currentWeather) {
     const { main: { temp } } = currentWeather
     console.log(temp)
