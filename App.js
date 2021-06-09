@@ -1,7 +1,8 @@
 import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import UnitsPicker from './components/UnitsPicker';
 import WeatherInfo from './components/WeatherInfo'
 
 const WEATHER_API_KEY = '58fa72b424e6c8a30df9f61094b8f84f';
@@ -11,13 +12,14 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [location, setLocation] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
-  const [unitsSystem, seUnitsSystem] = useState('metric');
+  const [unitsSystem, setUnitsSystem] = useState('metric');
 
   useEffect(() => {
     load();
-  }, [])
+  }, [unitsSystem])
 
   async function load() {
+    setCurrentWeather(null)
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
@@ -46,19 +48,26 @@ export default function App() {
 
 
   if (currentWeather) {
-    const { main: { temp } } = currentWeather
     return (
       <View style={styles.container}>
         <StatusBar style="auto" />
         <View style={styles.main}>
-          <WeatherInfo currentWeather={currentWeather}/>
+          <UnitsPicker unitsSystem={unitsSystem} setUnitsSystem={setUnitsSystem} />
+          <WeatherInfo currentWeather={currentWeather} />
         </View>
+      </View>
+    )
+  } else if (errorMessage) {
+    return (
+      <View style={styles.container}>
+        <Text>{errorMessage}</Text>
+        <StatusBar style="auto" />
       </View>
     )
   } else {
     return (
       <View style={styles.container}>
-        <Text>{errorMessage}</Text>
+        <ActivityIndicator />
         <StatusBar style="auto" />
       </View>
     )
