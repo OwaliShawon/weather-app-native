@@ -2,6 +2,7 @@ import * as Location from 'expo-location';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import ReloadIcon from './components/ReloadIcon';
 import UnitsPicker from './components/UnitsPicker';
 import WeatherInfo from './components/WeatherInfo'
 
@@ -53,6 +54,7 @@ export default function App() {
         <StatusBar style="auto" />
         <View style={styles.main}>
           <UnitsPicker unitsSystem={unitsSystem} setUnitsSystem={setUnitsSystem} />
+          <ReloadIcon load={load}/>
           <WeatherInfo currentWeather={currentWeather} />
         </View>
       </View>
@@ -67,7 +69,7 @@ export default function App() {
   } else {
     return (
       <View style={styles.container}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large"/>
         <StatusBar style="auto" />
       </View>
     )
