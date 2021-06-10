@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import ReloadIcon from './components/ReloadIcon';
 import UnitsPicker from './components/UnitsPicker';
+import WeatherDetails from './components/WeatherDetails';
 import WeatherInfo from './components/WeatherInfo'
+
 
 const WEATHER_API_KEY = '58fa72b424e6c8a30df9f61094b8f84f';
 
@@ -54,22 +56,23 @@ export default function App() {
         <StatusBar style="auto" />
         <View style={styles.main}>
           <UnitsPicker unitsSystem={unitsSystem} setUnitsSystem={setUnitsSystem} />
-          <ReloadIcon load={load}/>
+          <ReloadIcon load={load} />
           <WeatherInfo currentWeather={currentWeather} />
         </View>
+        <WeatherDetails currentWeather={currentWeather} unitsSystem={unitsSystem}/>
       </View>
     )
   } else if (errorMessage) {
     return (
       <View style={styles.container}>
-        <Text>{errorMessage}</Text>
+        <Text style={{margin:'auto'}}>{errorMessage}</Text>
         <StatusBar style="auto" />
       </View>
     )
   } else {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large"/>
+        <ActivityIndicator size="large" />
         <StatusBar style="auto" />
       </View>
     )
