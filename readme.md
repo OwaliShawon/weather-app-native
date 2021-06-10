@@ -5,7 +5,8 @@
 [Owali Ullah Shawon](https://github.com/OwaliShawon) </br>
 [Mainul Hasan](https://github.com/SMMainulHasan) </br>
 
-- This is a weather app, this app provides weather forecast 
+## Features
+- This is a weather app, this app provides current weather
 - In This app, we use device location access
 - And show the current place's  temperature
 - We used API calls to get data from Open weather API
