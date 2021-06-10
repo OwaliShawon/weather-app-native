@@ -1,6 +1,6 @@
-# Temperature Status Application
+# Temperature Status Application using react-native
 `Git link` https://github.com/OwaliShawon/weather-app-native </br>
-`Presentation link` [Link](https://docs.google.com/presentation/d/1cx1CJ6rS3GF3MAtaYcta8RUXRKKFNtJvvhiCTQsw6Fo/edit#slide=id.gdc0517205d_0_268)
+`Presentation` [Link](https://docs.google.com/presentation/d/1cx1CJ6rS3GF3MAtaYcta8RUXRKKFNtJvvhiCTQsw6Fo/edit#slide=id.gdc0517205d_0_268)
 ## Contributor
 [Sabbir Ahmmed](https://github.com/Sabbir185) </br>
 [Owali Ullah Shawon](https://github.com/OwaliShawon) </br>
